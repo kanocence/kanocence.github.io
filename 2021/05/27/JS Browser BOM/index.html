@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>测试文章 | kanocence</title>
+  <meta name="author" content="kanocence" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="js" />
+  
+  <meta name="description" content="浏览器对象模型（Browser Object Model (BOM)）允许 JavaScript 与浏览器对话。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试文章">
+<meta property="og:url" content="https://kanocence.github.io/2021/05/27/JS%20Browser%20BOM/index.html">
+<meta property="og:site_name" content="kanocence">
+<meta property="og:description" content="浏览器对象模型（Browser Object Model (BOM)）允许 JavaScript 与浏览器对话。">
+<meta property="og:locale">
+<meta property="og:image" content="https://kanocence.github.io/null">
+<meta property="article:published_time" content="2021-05-27T01:59:00.000Z">
+<meta property="article:modified_time" content="2021-06-10T01:25:14.983Z">
+<meta property="article:author" content="kanocence">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kanocence.github.io/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">kanocence</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>kanocence</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                
+                    <h1 class="kratos-entry-title text-center">测试文章</h1>
+                
+                
+                <ul class="kratos-post-meta text-center">
+                    <li><i class="fa fa-calendar"></i> 2021-05-27</li>
+                    <li><i class="fa fa-user"></i> 作者 kanocence</li>
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.25K
+                        
+                        字
+                    </li>
+                    
+                </ul>
+            </header>
+            <div class="kratos-post-content">
+                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                    本文最后编辑于 <time datetime="1623288314983"></time> 前，其中的内容可能需要更新。
+                </div>
+                
+                    <div class="kratos-post-inner-toc">
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">JavaScript Window - 浏览器对象模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.1.</span> <span class="toc-text">窗口尺寸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Screen"><span class="toc-number">2.</span> <span class="toc-text">JavaScript Window Screen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Location"><span class="toc-number">3.</span> <span class="toc-text">JavaScript Window Location</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-History"><span class="toc-number">4.</span> <span class="toc-text">JavaScript Window History</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Navigator"><span class="toc-number">5.</span> <span class="toc-text">JavaScript Window Navigator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%BC%B9%E5%87%BA%E6%A1%86"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 弹出框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Timing-%E4%BA%8B%E4%BB%B6"><span class="toc-number">7.</span> <span class="toc-text">JavaScript Timing 事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Cookies"><span class="toc-number">8.</span> <span class="toc-text">JavaScript Cookies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E5%88%9B%E5%BB%BA-cookie"><span class="toc-number">8.1.</span> <span class="toc-text">通过 JavaScript 创建 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E8%AF%BB%E5%8F%96-cookie"><span class="toc-number">8.2.</span> <span class="toc-text">通过 JavaScript 读取 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E6%94%B9%E5%8F%98-cookie"><span class="toc-number">8.3.</span> <span class="toc-text">通过 JavaScript 改变 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E5%88%A0%E9%99%A4-cookie"><span class="toc-number">8.4.</span> <span class="toc-text">通过 JavaScript 删除 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">8.5.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
+                    </div>
+                
+                <hr />
+                <p>浏览器对象模型（Browser Object Model (BOM)）允许 JavaScript 与浏览器对话。</p>
+<span id="more"></span>
+
+<h2 id="JavaScript-Window-浏览器对象模型"><a href="#JavaScript-Window-浏览器对象模型" class="headerlink" title="JavaScript Window - 浏览器对象模型"></a>JavaScript Window - 浏览器对象模型</h2><p>所有浏览器都支持 window 对象。它代表浏览器的窗口。</p>
+<p>所有全局 JavaScript 对象，函数和变量自动成为 window 对象的成员。</p>
+<p>全局变量是 window 对象的属性。</p>
+<p>全局函数是 window 对象的方法。</p>
+<h3 id="窗口尺寸"><a href="#窗口尺寸" class="headerlink" title="窗口尺寸"></a>窗口尺寸</h3><p>两个属性可用用于确定浏览器窗口的尺寸。</p>
+<p>这两个属性都以像素返回尺寸：</p>
+<ul>
+<li><code>window.innerHeight</code> - 浏览器窗口的内高度（以像素计）</li>
+<li><code>window.innerWidth</code> - 浏览器窗口的内宽度（以像素计）</li>
+</ul>
+<hr>
+<h2 id="JavaScript-Window-Screen"><a href="#JavaScript-Window-Screen" class="headerlink" title="JavaScript Window Screen"></a>JavaScript Window Screen</h2><p><code>window.screen</code> 对象包含用户屏幕的信息。</p>
+<hr>
+<h2 id="JavaScript-Window-Location"><a href="#JavaScript-Window-Location" class="headerlink" title="JavaScript Window Location"></a>JavaScript Window Location</h2><p><code>window.location</code> 对象可用于获取当前页面地址（URL）并把浏览器重定向到新页面</p>
+<p><code>window.location</code> 对象可不带 window 前缀书写。</p>
+<ul>
+<li><code>window.location.href</code> 返回当前页面的 href (URL)</li>
+<li><code>window.location.hostname</code> 返回 web 主机的域名</li>
+<li><code>window.location.pathname</code> 返回当前页面的路径或文件名</li>
+<li><code>window.location.protocol</code> 返回使用的 web 协议（http: 或 https:）</li>
+<li><code>window.location.assign(url)</code> 加载新文档</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href</span><br><span class="line"><span class="comment">// &quot;https://kanocence.github.io/2021/06/01/%E7%BA%BF%E7%A8%8B%E6%B1%A0/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.location.protocol</span><br><span class="line"><span class="comment">// &quot;https:&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.location.hostname</span><br><span class="line"><span class="comment">// &quot;kanocence.github.io&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.location.pathname</span><br><span class="line"><span class="comment">//&quot;/2021/06/01/%E7%BA%BF%E7%A8%8B%E6%B1%A0/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.location.href === <span class="built_in">window</span>.location.protocol + <span class="string">&#x27;//&#x27;</span> + <span class="built_in">window</span>.location.hostname + <span class="built_in">window</span>.location.pathname</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="JavaScript-Window-History"><a href="#JavaScript-Window-History" class="headerlink" title="JavaScript Window History"></a>JavaScript Window History</h2><p><code>window.history</code> 对象包含浏览器历史。</p>
+<p>window.history 对象可不带 window 书写。</p>
+<p>为了保护用户的隐私，JavaScript 访问此对象存在限制。</p>
+<ul>
+<li><code>history.back()</code> - 等同于在浏览器点击后退按钮</li>
+<li><code>history.forward()</code> - 等同于在浏览器中点击前进按钮<hr>
+</li>
+</ul>
+<h2 id="JavaScript-Window-Navigator"><a href="#JavaScript-Window-Navigator" class="headerlink" title="JavaScript Window Navigator"></a>JavaScript Window Navigator</h2><p><code>window.navigator</code> 对象包含有关访问者的信息。</p>
+<ul>
+<li><code>navigator.appName</code> 浏览器应用程序名称，”Netscape” 是 IE11、Chrome、Firefox 以及 Safari 的应用程序名称的统称。</li>
+<li><code>navigator.appCodeName</code> 浏览器应用程序代码名称，”Mozilla” 是 Chrome、Firefox、IE、Safari 以及 Opera 的应用程序代码名称。</li>
+<li><code>navigator.platform</code> 浏览器平台（操作系统）</li>
+<li><code>navigator.product </code> 浏览器引擎</li>
+<li><code>navigator.appVersion </code> 浏览器版本</li>
+<li><code>navigator.userAgent </code> 浏览器代理</li>
+<li><code>navigator.cookieEnabled</code> cookie 是否启用</li>
+</ul>
+<hr>
+<h2 id="JavaScript-弹出框"><a href="#JavaScript-弹出框" class="headerlink" title="JavaScript 弹出框"></a>JavaScript 弹出框</h2><p>JavaScript 有三种类型的弹出框：警告框、确认框和提示框。</p>
+<ul>
+<li><code>window.alert(&quot;sometext&quot;)</code></li>
+<li><code>window.confirm(&quot;sometext&quot;)</code> return boolean</li>
+<li><code>window.prompt(&quot;sometext&quot;,&quot;defaultText&quot;)</code> return string<hr>
+</li>
+</ul>
+<h2 id="JavaScript-Timing-事件"><a href="#JavaScript-Timing-事件" class="headerlink" title="JavaScript Timing 事件"></a>JavaScript Timing 事件</h2><p>JavaScript 可以在时间间隔内执行，这就是所谓的定时事件（ Timing Events）。</p>
+<ul>
+<li><code>setTimeout(function, milliseconds)</code></li>
+<li><code>setInterval(function, milliseconds)</code></li>
+<li><code>clearTimeout()</code></li>
+<li><code>clearInterval()</code><hr>
+</li>
+</ul>
+<h2 id="JavaScript-Cookies"><a href="#JavaScript-Cookies" class="headerlink" title="JavaScript Cookies"></a>JavaScript Cookies</h2><p>Cookie 让您在网页中存储用户信息。</p>
+<h3 id="通过-JavaScript-创建-cookie"><a href="#通过-JavaScript-创建-cookie" class="headerlink" title="通过 JavaScript 创建 cookie"></a>通过 JavaScript 创建 cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=kanocence&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加有效日期（UTC 时间）。默认情况下，在浏览器关闭时会删除 cookie</span></span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=kanocence; expires=Sun, 31 Dec 2021 12:00:00 UTC&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 path 参数，您可以告诉浏览器 cookie 属于什么路径。默认情况下，cookie 属于当前页。</span></span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=kanocence;path=/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-JavaScript-读取-cookie"><a href="#通过-JavaScript-读取-cookie" class="headerlink" title="通过 JavaScript 读取 cookie"></a>通过 JavaScript 读取 cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-JavaScript-改变-cookie"><a href="#通过-JavaScript-改变-cookie" class="headerlink" title="通过 JavaScript 改变 cookie"></a>通过 JavaScript 改变 cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=scarlet&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-JavaScript-删除-cookie"><a href="#通过-JavaScript-删除-cookie" class="headerlink" title="通过 JavaScript 删除 cookie"></a>通过 JavaScript 删除 cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接把 expires 参数设置为过去的日期即可</span></span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arr = <span class="built_in">document</span>.cookie.split(<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> res = <span class="literal">undefined</span></span><br><span class="line">  arr.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    i = i.trim()</span><br><span class="line">    <span class="keyword">if</span>(i.indexOf(name + <span class="string">&#x27;=&#x27;</span>) === <span class="number">0</span>) &#123;</span><br><span class="line">      res = i.replace(name + <span class="string">&#x27;=&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * name val 有效期（天）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, expires</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() + (expires * <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>)</span><br><span class="line">  <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;value&#125;</span>;expires=<span class="subst">$&#123;date.toUTCString&#125;</span>;path=/`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/js/" rel="tag">js</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2021-06-10</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" JavaScript this 关键词" href="/2021/05/27/this 关键词/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" 线程池" href="/2021/05/31/线程池/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div class="post-comments lazy-load">
+    <div id="tcomment"></div>
+</div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            twikoo.init({ envId: 'hello-cloudbase-8gnf9o0570c5d670', el: '#tcomment' });
+        }
+        if (typeof twikoo == 'undefined') {
+            const src = 'https://cdn.jsdelivr.net/npm/twikoo@latest/dist/twikoo.all.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://twikoo.js.org/">comments powered by Twikoo.</a></noscript>
+        
+    </article>
+</section>
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="https://avatars.githubusercontent.com/u/61108370?v=4" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">JavaScript Window - 浏览器对象模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%B0%BA%E5%AF%B8"><span class="toc-text">窗口尺寸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Screen"><span class="toc-text">JavaScript Window Screen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Location"><span class="toc-text">JavaScript Window Location</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-History"><span class="toc-text">JavaScript Window History</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Window-Navigator"><span class="toc-text">JavaScript Window Navigator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E5%BC%B9%E5%87%BA%E6%A1%86"><span class="toc-text">JavaScript 弹出框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Timing-%E4%BA%8B%E4%BB%B6"><span class="toc-text">JavaScript Timing 事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Cookies"><span class="toc-text">JavaScript Cookies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E5%88%9B%E5%BB%BA-cookie"><span class="toc-text">通过 JavaScript 创建 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E8%AF%BB%E5%8F%96-cookie"><span class="toc-text">通过 JavaScript 读取 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E6%94%B9%E5%8F%98-cookie"><span class="toc-text">通过 JavaScript 改变 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-JavaScript-%E5%88%A0%E9%99%A4-cookie"><span class="toc-text">通过 JavaScript 删除 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text">实例</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a><span class="category-list-count">3</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/java/" style="font-size: 0.6em;">java</a> <a href="/tags/js/" style="font-size: 0.8em;">js</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.7em;">前端</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2021/06/10/%E6%AF%94%E8%BE%83%E4%B8%A4%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89/"><i class="fa  fa-book"></i> 比较两个对象是否相等</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/05/31/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"><i class="fa  fa-book"></i> 线程池</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/05/27/JS%20Browser%20BOM/"><i class="fa  fa-book"></i> 测试文章</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/05/27/this%20%E5%85%B3%E9%94%AE%E8%AF%8D/"><i class="fa  fa-book"></i> JavaScript this 关键词</a>
+            
+          
+        
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:1051641454@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/kanocence"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/kanocence"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2021 kanocence 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by kanocence.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://kanocence/github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
